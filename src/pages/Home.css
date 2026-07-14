@@ -1,0 +1,8 @@
+.main {
+    padding-bottom:4rem;
+    background-color: var(--background-color);
+}
+
+.movies {
+    padding: 2rem;
+}

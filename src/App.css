@@ -1,0 +1,138 @@
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background-color: #080808;
+    --second-background-color: #2A1614;
+    --third-background-color: #361f1d;
+    --secondary-elements-color: #E50914;
+    --gray-color: #949393;
+    --darker-gray-color: #151515;
+    --placeholder-text-color: #7A5A56;
+    --text-primary-color: #FFDAD5;
+    --text-secondary-color: #fff;
+    --star-color: #F5C518;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: 'Montserrat', sans-serif;
+    scroll-behavior: smooth;
+}
+
+@media(min-width: 768px) {
+    html {
+        font-size: clamp(75%, 1.5vw, 100%);
+    }
+}
+
+/* KOMPONENTY */
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3.6rem;
+    border-radius: .2rem;
+    border: none;
+    flex-grow: 1;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+.btn--play {
+    background-color: var(--secondary-elements-color);
+    color: var(--text-secondary-color);
+}
+
+.btn__icon {
+    width: 1.8rem;
+    height: 1.8rem;
+    fill: var(--text-secondary-color);
+    transition: all .3s ease-in-out;
+}
+
+.rate {
+        background-color: var(--background-color);
+        padding: .3rem .6rem;
+        border: 1px solid var(--second-background-color);
+        border-radius: .2rem;
+        font-size: 1.4rem;
+        color: var(--text-secondary-color);
+}
+
+.rate__icon {
+    width: 1.4rem;
+    height: 1.4rem;
+    fill: var(--star-color);
+}
+
+.gray {
+    padding-left: .5rem;
+    color: var(--gray-color);
+}
+
+.video__overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 500;
+    padding: 2rem;
+    background-color: rgba(8,8,8,.25);
+    backdrop-filter: blur(10px);
+    transition: .3s;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: stroke;
+}
+
+.video__overlay.active {
+   opacity: 1;
+   visibility: visible;
+}
+
+.video__item {
+    position: absolute;
+    z-index: 5;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    transform: scale(0);
+    width: 80vw;
+    height: 60vh;
+    background-color: var(--background-color);
+    transition: .3s;
+}
+
+.video__item.active {
+    transform: scale(1);
+}
+
+.loader-overlay.hidden {
+    display: none;
+}
+
+.loader-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-color);
+}
+
+.loader {
+    position: absolute;
+    z-index: 6;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    width: 3rem;
+    height: 3rem;
+    border: 5px solid var(--gray-color);
+    border-top-color: lightblue;
+    border-radius: 50%;
+    animation: .5s spin linear infinite;
+}
