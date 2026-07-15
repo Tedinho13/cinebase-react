@@ -15,7 +15,6 @@ const useMovies = (page) => {
       })
       .catch((err) => {
         setError(err.message);
-        console.log(loading);
       })
       .finally(() => setLoading(false));
   }, [page]);

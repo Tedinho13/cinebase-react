@@ -5,7 +5,6 @@ function useGenres() {
   const [genres, setGenres] = useState(new Map());
 
   useEffect(() => {
-
     fetchData(getGenresUrl())
       .then((data) => {
         const { genres: genresData } = data;
@@ -18,9 +17,10 @@ function useGenres() {
 
         setGenres(newMap);
       })
+      .catch((err) => console.error(err));
   }, []);
 
-  return {genres};
+  return { genres };
 }
 
 export default useGenres;

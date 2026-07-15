@@ -1,0 +1,37 @@
+.profile-dropdown {
+    z-index: 3;
+    position: absolute;
+    top: 120%;
+    right: 0;
+    padding: 1rem;
+    height: 0;
+    min-width: 20vw;
+    max-width: 40vw;
+    background-color: var(--third-background-color);
+    border-radius: 10px;
+    box-shadow: 0 0 6px 3px rgba(255, 255,255, .2);
+    opacity: 0;
+    transition: .3s;
+}
+
+.profile-dropdown.active {
+    opacity: 1;
+    height: 15vh;
+}
+
+.favourites-movies__item {
+    padding: 1rem .3rem;
+    color: var(--text-secondary-color);
+    white-space: nowrap;
+    font-size: 1.15rem;
+}
+
+.favourites-movies__item:active {
+    background-color: var(--second-background-color);
+}
+
+@media(min-width: 1024px) {
+    .favourites-movies__item:hover {
+    background-color: var(--second-background-color);
+    }
+}

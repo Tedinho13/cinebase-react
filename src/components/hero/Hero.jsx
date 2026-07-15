@@ -1,18 +1,24 @@
 import '../hero/Hero.css';
 import useFeaturedMovie from '../../hooks/useFeaturedMovie';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import Loader from '../layout/Loader';
+import { useNavigate } from 'react-router-dom';
 
-const Hero = () => {
-    const [drawedMovie, setDrawedMovie] = useState(null);
+const Hero = ({onBtnClick}) => {
     const { movies, loading, error } = useFeaturedMovie();
 
-    useEffect(() => {
-        if (movies.length > 0) {
-            const index = Math.floor(Math.random() * movies.length);
-            setDrawedMovie(movies[index]);
-        }
-    }, [movies]);
+        const navigate = useNavigate();
+
+    const handleRedirect = () => {
+        navigate(`/movie/${drawedMovie.id}`);
+    }
+
+   const drawedMovie = useMemo(() => {
+    if (movies.length === 0) return null;
+    const index = Math.floor(Math.random() * movies.length);
+    return movies[index];
+}, [movies]);
+
 
     if (loading) return <Loader />;
     if (error) return <p>Błąd: {error}</p>;
@@ -24,7 +30,7 @@ const Hero = () => {
     const heroDesc = drawedMovie.overview;
 
     return (
-        <section className="hero" id={drawedMovie.id} style={{backgroundImage: `url("https://image.tmdb.org/t/p/w${imageWidth}${drawedMovie.backdrop_path}")`}}>
+        <section className="hero" id={drawedMovie.id} style={{backgroundImage: `url("https://image.tmdb.org/t/p/w${imageWidth}${drawedMovie.backdrop_path}")`}} onClick={handleRedirect}>
             <div className="hero__overlay"></div>
             <div className="hero__content">
                 <div className="badges-box">
@@ -40,7 +46,10 @@ const Hero = () => {
                 <h1 className="hero__title">{heroTitle}</h1>
                 <p className="hero__description">{heroDesc}</p>
                 <div className="hero__actions">
-                    <button className="btn btn--play">
+                    <button className="btn btn--play" disabled={drawedMovie ? false : true} onClick={(e) => {
+                        e.stopPropagation();
+                        onBtnClick(drawedMovie.id);
+                    }}>
                         <svg className="btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
                             <path d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z"/>
                         </svg>

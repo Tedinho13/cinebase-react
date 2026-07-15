@@ -4,24 +4,42 @@ import Hero from "../components/hero/Hero";
 import MovieGrid from "../components/movies/MovieGrid";
 import Pagination from "../components/movies/Pagination";
 import Footer from "../components/layout/Footer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useMovies from '../hooks/useMovies';
 
 import './Home.css';
 
 const Home = () => {
     const [page, setPage] = useState(1);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [movieId, setMovieId] = useState(null);
+
+    const handleModalOpening = (id) => {
+        setModalOpen(true);
+        setMovieId(id);
+    }
+
+    useEffect(() => {
+    console.log(movieId);
+}, [movieId]);
+
+    const handleCloseModal = e => {
+        console.log(e.key);
+        if(e.key === "Escape") setModalOpen(false);
+    }
+
+    const handleCloseByClick = () => setModalOpen(false);
 
     const {movies, loading, error} = useMovies(page);
 
     return ( 
         <>
-        <VideoModal/>
+        {modalOpen && <VideoModal id={movieId} onKeyDown={handleCloseModal} onClick={handleCloseByClick}/>}
         <header className="header">
         <NavBar/>
         </header>
             <main className="main">
-            <Hero/>
+            <Hero onBtnClick={handleModalOpening}/>
             <section className="movies" id="movies">
                 <h2 className="movies__title">Filmy</h2>
                 <MovieGrid movies={movies} loading={loading}/>

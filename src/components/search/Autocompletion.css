@@ -1,0 +1,39 @@
+.autocompletion__list {
+    padding: 1rem 1.5rem;
+    position: absolute;
+    top: 90%;
+    left: -2px;
+    right: -2px;
+    width: calc(100% + 4px);
+    z-index: 4;
+    background-color: var(--third-background-color);
+    border: 1px solid white;
+    border-bottom-right-radius: .5rem;
+    border-bottom-left-radius: .5rem;
+    border-top: none;
+    list-style: none;
+    opacity: 1;
+    transition: .5s;
+}
+
+.autocompletion__list.hidden {
+    top: 50%;
+    opacity: 0;
+}
+
+.autocompletion__item {
+    padding: .4rem .5rem;
+    color: var(--text-secondary-color);
+    cursor: pointer;
+    transition: .3s;
+}
+
+.autocompletion__item.active {
+        background-color: var(--second-background-color);
+}
+
+@media(min-width: 1024px) {
+    .autocompletion__item:hover {
+        background-color: var(--second-background-color);
+    }
+}
