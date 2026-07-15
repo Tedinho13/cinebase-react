@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import useGenres from "../../hooks/useGenres";
 import './MovieCard.css';
 
+import NoCover from '../../assets/no-cover.webp';
+
 const MovieCard = ({movie}) => {
 
     const navigate = useNavigate();
@@ -9,7 +11,7 @@ const MovieCard = ({movie}) => {
     const imagePath =
         movie.poster_path ?
           `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-        : "img/no-cover.webp";
+        : NoCover;
 
       const movieRate =
         movie.vote_average === 0 ? "Brak" : movie.vote_average.toFixed(1);
@@ -28,7 +30,7 @@ const MovieCard = ({movie}) => {
                         <div className="rate rate--poster">{movieRate}</div>
                     </div>
                     <h3 className="movie__title">{movie.original_title}</h3>
-                    <p className="movie__info">Release date: <span className="movie__date">{movie.release_date}</span> <span className="bull">&bull;</span> <span className="genre">{genresNames ||"Brak gatunku"}</span></p>
+                    <p className="movie__info">Release date: <span className="movie__date">{movie?.release_date || "None"}</span> <span className="bull">&bull;</span> <span className="genre">{genresNames ||"Brak gatunku"}</span></p>
         </div>
      );
 }

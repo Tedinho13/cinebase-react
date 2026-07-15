@@ -24,7 +24,7 @@ const Home = () => {
 }, [movieId]);
 
     const handleCloseModal = e => {
-        console.log(e.key);
+       if(!e.key !== "Escape") return;
         if(e.key === "Escape") setModalOpen(false);
     }
 

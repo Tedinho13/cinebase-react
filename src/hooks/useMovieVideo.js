@@ -24,7 +24,6 @@ const useMovieVideo = (id) => {
           ) ||
           data.results.find((video) => video.site === "YouTube");
 
-        console.log(trailer);
         setMovieTrailer(trailer);
       })
       .catch((err) => setError(err.message))

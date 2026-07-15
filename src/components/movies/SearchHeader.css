@@ -1,0 +1,21 @@
+.movie__query {
+    color: var(--text-primary-color);
+}
+
+.movies__title {
+    font-size: 2rem;
+    color: var(--text-secondary-color);
+    margin-bottom: 1rem;
+}
+
+.movies__search-description {
+    margin-bottom: 1rem;
+    color: var(--gray-color);
+    font-size: 1.4rem;
+}
+
+
+
+.movies__grid--results {
+    position: static;
+}

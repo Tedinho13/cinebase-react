@@ -3,10 +3,15 @@ import './MovieDetails.css';
 import Loader from "./Loader";
 import useGenres from '../../hooks/useGenres';
 
+import NoCover from '../../assets/no-cover.webp';
+
 import { Link } from 'react-router-dom';
 
-const MovieDetails = ({movie}) => {
-    console.log(movie.backdrop_path);
+import { useParams } from 'react-router-dom';
+
+const MovieDetails = ({movie, onBtnClick}) => {
+
+    const {id} = useParams();
 
     const width = window.innerWidth > 1024 ? 1280 : 500;
 
@@ -24,10 +29,13 @@ const MovieDetails = ({movie}) => {
 
     const movieRate =
         movie.vote_average === 0 ? "Brak" : movie.vote_average.toFixed(1);
+
+    const imagePath = movie.backdrop_path ? `url(https://image.tmdb.org/t/p/w${width}${movie.backdrop_path})` : `url(${NoCover})`;
+
     return ( 
         <section className="movie-details">
 
-        <div className="movie-details__header" style={{backgroundImage: `url(https://image.tmdb.org/t/p/w${width}${movie.backdrop_path})`}}>
+        <div className="movie-details__header" style={{backgroundImage: imagePath}}>
             <div className="hero__overlay"></div>
 
             <Link to="/" className="movie-details__back"><svg className="movie-details__back-icon" xmlns="http://www.w3.org/2000/svg"viewBox="0 -960 960 960"><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg>Back to main page</Link>
@@ -44,7 +52,10 @@ const MovieDetails = ({movie}) => {
                         <h1 className="header movie-details__title">{movie.original_title}</h1>
                     <div className="movie-details__actions">
                         <span className="movie-details__rating"></span>
-                        <button className="btn btn--play btn--movie-play"><svg className="btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z"/></svg>Play</button>
+                        <button className="btn btn--play btn--movie-play" onClick={(e) => {
+                        e.stopPropagation();
+                        onBtnClick(id);
+                    }}><svg className="btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z"/></svg>Play</button>
                         <button className="btn btn--addToList btn--black"><svg className="btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"  ><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg></button>
                     </div>
                 </div>

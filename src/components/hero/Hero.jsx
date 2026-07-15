@@ -46,7 +46,7 @@ const Hero = ({onBtnClick}) => {
                 <h1 className="hero__title">{heroTitle}</h1>
                 <p className="hero__description">{heroDesc}</p>
                 <div className="hero__actions">
-                    <button className="btn btn--play" disabled={drawedMovie ? false : true} onClick={(e) => {
+                    <button className="btn btn--play"  onClick={(e) => {
                         e.stopPropagation();
                         onBtnClick(drawedMovie.id);
                     }}>
