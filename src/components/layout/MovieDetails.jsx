@@ -9,9 +9,28 @@ import { Link } from 'react-router-dom';
 
 import { useParams } from 'react-router-dom';
 
+import {useCollection} from '../context/CollectionContext';
+
 const MovieDetails = ({movie, onBtnClick}) => {
 
     const {id} = useParams();
+
+    const {isInCollection, dispatch} = useCollection();
+
+    const isInCollectionCheck = id ? isInCollection(id) : false;
+
+    console.log(isInCollectionCheck)
+
+        const handleClick = (e) => {
+        e.stopPropagation();
+
+        if(isInCollectionCheck) {
+            dispatch({type: "REMOVE", id: id});
+        }
+        else {
+            dispatch({type: "ADD", id: id});
+        }
+    }
 
     const width = window.innerWidth > 1024 ? 1280 : 500;
 
@@ -38,7 +57,7 @@ const MovieDetails = ({movie, onBtnClick}) => {
         <div className="movie-details__header" style={{backgroundImage: imagePath}}>
             <div className="hero__overlay"></div>
 
-            <Link to="/" className="movie-details__back"><svg className="movie-details__back-icon" xmlns="http://www.w3.org/2000/svg"viewBox="0 -960 960 960"><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg>Back to main page</Link>
+            <button to="/" className="movie-details__back"><svg className="movie-details__back-icon" xmlns="http://www.w3.org/2000/svg"viewBox="0 -960 960 960"><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg>Back to previous page</button>
 
             <div className="movie-details__header-components">
                 <div className="movie-details__poster">
@@ -56,7 +75,9 @@ const MovieDetails = ({movie, onBtnClick}) => {
                         e.stopPropagation();
                         onBtnClick(id);
                     }}><svg className="btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z"/></svg>Play</button>
-                        <button className="btn btn--addToList btn--black"><svg className="btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"  ><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg></button>
+                        <button className="btn btn--addToList btn--black" onClick={handleClick}>{isInCollectionCheck ? <svg className="btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#e3e3e3"><path d="M200-440v-80h560v80H200Z"/></svg> : <svg className="btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                            <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
+                        </svg>}</button>
                     </div>
                 </div>
             </div>

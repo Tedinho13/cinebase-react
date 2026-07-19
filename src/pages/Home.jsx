@@ -19,10 +19,6 @@ const Home = () => {
         setMovieId(id);
     }
 
-    useEffect(() => {
-    console.log(movieId);
-}, [movieId]);
-
     const handleCloseModal = e => {
        if(!e.key !== "Escape") return;
         if(e.key === "Escape") setModalOpen(false);

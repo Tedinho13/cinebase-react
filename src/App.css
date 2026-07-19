@@ -52,8 +52,12 @@ html {
 .btn__icon {
     width: 1.8rem;
     height: 1.8rem;
-    fill: var(--text-secondary-color);
+    fill: var(--darker-gray-color);
     transition: all .3s ease-in-out;
+}
+
+.btn__icon--white {
+    fill: var(--text-secondary-color);
 }
 
 .rate {

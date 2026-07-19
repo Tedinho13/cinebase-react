@@ -1,24 +1,43 @@
 import '../hero/Hero.css';
 import useFeaturedMovie from '../../hooks/useFeaturedMovie';
-import { useEffect, useState, useMemo } from 'react';
+import {useMemo } from 'react';
 import Loader from '../layout/Loader';
 import { useNavigate } from 'react-router-dom';
 
+import {useCollection} from '../context/CollectionContext';
+
 const Hero = ({onBtnClick}) => {
+
     const { movies, loading, error } = useFeaturedMovie();
 
-        const navigate = useNavigate();
+    const navigate = useNavigate();
+
+    const drawedMovie = useMemo(() => {
+    if (movies.length === 0) return null;
+    const index = Math.floor(Math.random() * movies.length);
+    return movies[index];
+    }, [movies]);
 
     const handleRedirect = () => {
         navigate(`/movie/${drawedMovie.id}`);
     }
 
-   const drawedMovie = useMemo(() => {
-    if (movies.length === 0) return null;
-    const index = Math.floor(Math.random() * movies.length);
-    return movies[index];
-}, [movies]);
+    const {isInCollection, dispatch} = useCollection();
 
+    const isInCollectionCheck = drawedMovie ? isInCollection(drawedMovie.id) : false;
+
+        const btnText = isInCollectionCheck ? "Remove" : "Add";
+
+        const handleClick = (e) => {
+        e.stopPropagation();
+
+        if(isInCollectionCheck) {
+            dispatch({type: "REMOVE", id: drawedMovie.id});
+        }
+        else {
+            dispatch({type: "ADD", id: drawedMovie.id});
+        }
+    }
 
     if (loading) return <Loader />;
     if (error) return <p>Błąd: {error}</p>;
@@ -50,16 +69,16 @@ const Hero = ({onBtnClick}) => {
                         e.stopPropagation();
                         onBtnClick(drawedMovie.id);
                     }}>
-                        <svg className="btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                        <svg className="btn__icon btn__icon--white" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
                             <path d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z"/>
                         </svg>
                         Play
                     </button>
-                    <button className="btn btn--addToList btn--transparent">
-                        <svg className="btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                    <button className="btn btn--addToList btn--transparent" onClick={handleClick}>
+                        {isInCollectionCheck ? <svg className="btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#e3e3e3"><path d="M200-440v-80h560v80H200Z"/></svg> : <svg className="btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
                             <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
-                        </svg>
-                        My List
+                        </svg>}
+                        {btnText}
                     </button>
                 </div>
             </div>

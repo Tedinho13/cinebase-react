@@ -20,8 +20,10 @@ const SearchBar = () => {
      const timeoutRef = useRef(null);
 
      const goToMoviePage = (e) => {
-         if (!selectedMovie) return;
+         if (selectedMovie.length === 0) return;
+         setSelectedMovie(query);
         e.preventDefault();
+
         navigate(`/search/${query}`);
         setQuery('');
      }
@@ -34,7 +36,7 @@ const SearchBar = () => {
         timeoutRef.current = setTimeout(() => {
             setAutocompleteActive(true)
             setQuery(value);
-        }, 300)
+        }, 250)
     }
 
     const handleKeyDown = (e) => {

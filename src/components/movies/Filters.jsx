@@ -57,7 +57,7 @@ const Filters = ({filters, onChangeFilters, onResetFilters}) => {
 
             <div className="year__hint-box">
                 <span className="year__text year__from">1970</span>
-                <span className="year__text year__selected" value={filters.year}>{filters.year}</span>
+                <span className="year__text year__selected" value={filters.year}>{filters.year? filters.year : 1998}</span>
                 <span className="year__text year__to">2026</span>
             </div>
             <input className="year__input" type="range" min="1970" max="2026" value={filters.year} onChange={(e) => {
