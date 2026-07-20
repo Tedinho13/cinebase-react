@@ -31,6 +31,10 @@ html {
 
 /* KOMPONENTY */
 
+.root {
+    position: relative;
+}
+
 .btn {
     display: flex;
     justify-content: center;
