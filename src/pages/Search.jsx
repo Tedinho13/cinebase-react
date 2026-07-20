@@ -21,7 +21,6 @@ const Movie = () => {
     const {movies, loading, error} = useSearchedMovies(query);
 
     const {genres} = useGenres();
-    console.log(genres);
 
     const {filteredMovies, txt} = useMemo(() => {
     let result = movies;
@@ -51,8 +50,6 @@ const Movie = () => {
         console.log(key, value);
         setFilters(prev => ({...prev, [key]: value}));
     }
-
-    console.log(movies);
 
     return ( 
         <>

@@ -60,6 +60,37 @@ html {
     fill: var(--text-secondary-color);
 }
 
+.return-btn {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 2rem;
+    margin-left: 3rem;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    border: none;
+    color: var(--text-secondary-color);
+    text-decoration: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    text-shadow: 0 2px 4px rgba(0,0,0,.4);
+}
+
+.return-btn:active {
+        color: var(--secondary-elements-color);
+}
+
+.return-btn__icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: var(--text-secondary-color);
+}
+
+.return-btn--clean {
+    margin-left: 0;   
+}
+
+/* RESZTA KOMPONENTÓW */
+
 .rate {
         background-color: var(--background-color);
         padding: .3rem .6rem;
@@ -148,8 +179,15 @@ html {
 }
 
 @media(min-width: 1024px) {
+     .return-btn:hover {
+        color: var(--secondary-elements-color);
+    }
+    .return-btn:hover .return-btn__icon {
+        fill: var(--secondary-elements-color);
+    }
+
     .movies__flex {
     display: flex;
     gap: 2rem;
-}
+    }
 }

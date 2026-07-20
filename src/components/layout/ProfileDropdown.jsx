@@ -1,6 +1,6 @@
 import './ProfileDropdown.css';
 
-import useCollection from '../../hooks/useCollection';
+import {useCollection} from '../context/CollectionContext';
 
 import { useNavigate } from 'react-router-dom';
 

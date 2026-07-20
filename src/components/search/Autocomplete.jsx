@@ -1,5 +1,4 @@
 import './Autocompletion.css';
-import { useState } from 'react';
 
 const Autocomplete = ({activeItem, data, onClick}) => {
   

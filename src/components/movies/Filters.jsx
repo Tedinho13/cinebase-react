@@ -11,9 +11,8 @@ const Filters = ({filters, onChangeFilters, onResetFilters}) => {
     )));
 
     return ( 
-        
              <form className="filters">
-    <h3 className="filters__title">
+            <h3 className="filters__title">
         <svg className="filters__logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
             <path d="M400-240v-80h160v80H400ZM240-440v-80h480v80H240ZM120-640v-80h720v80H120Z"/>
         </svg>

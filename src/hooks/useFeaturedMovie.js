@@ -11,7 +11,6 @@ const useFeaturedMovie = () => {
     const url = getFeaturedMovieUrl();
     fetchData(url)
       .then((data) => {
-        console.log(data);
         setMovies(data.results);
       })
       .catch((err) => {

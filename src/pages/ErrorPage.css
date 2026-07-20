@@ -1,0 +1,18 @@
+.main-error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    min-height: 69vh;
+}
+
+.main-error__number {
+    font-size: 3.4rem;
+    color: var(--secondary-elements-color);
+}
+
+.main-error__info {
+    font-size: 1.8rem;
+    color: var(--text-primary-color);
+}

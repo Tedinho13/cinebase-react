@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CollectionProvider } from './components/context/CollectionContext';
 
 import Collection from './pages/Collection';
+import ErrorPage from './pages/ErrorPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path='/movie/:id' element={<Movie/>} />
           <Route path='/search/:query' element={<Search/>} />
           <Route path='/collection' element={<Collection/>} />
+          <Route path='*' element={<ErrorPage/>} />
         </Routes>
     </Router>
     </CollectionProvider>

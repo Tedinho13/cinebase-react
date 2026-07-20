@@ -3,7 +3,7 @@ import './Pagination.css';
 
 const Pagination = ({page, onChangePage}) => {
 
-    const pagesNumbers = [page - 1, page, page + 1].filter(n => n >= 1);
+    const pagesNumbers = [page - 1, page, page + 1].filter(n => n >= 1 && n < 501);
 
     const [searchedPage, setSearchedPage] = useState('');
     const [inputActive, setInputActive] = useState(false);

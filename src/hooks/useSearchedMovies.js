@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import {
   fetchData,
-  getMovieVideoUrl,
   getSearchedMovieUrl,
 } from "../services/api";
 
@@ -16,7 +15,6 @@ const useSearchedMovies = (query) => {
     const url = getSearchedMovieUrl(query);
     fetchData(url)
       .then((data) => {
-        console.log(data.results);
         setMovies(data.results);
       })
       .catch((err) => setError(err.message))

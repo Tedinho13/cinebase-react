@@ -15,8 +15,6 @@ const useAutocompletion = (query) => {
     const url = getSearchedMovieUrl(query);
     fetchData(url)
       .then((data) => {
-        console.log(query);
-        console.log(data.results);
         if (!ignore) setData(data.results);
       })
       .catch((err) => console.error(err));

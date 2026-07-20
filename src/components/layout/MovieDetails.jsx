@@ -1,13 +1,10 @@
 import './MovieDetails.css';
 
-import Loader from "./Loader";
 import useGenres from '../../hooks/useGenres';
 
 import NoCover from '../../assets/no-cover.webp';
 
-import { Link } from 'react-router-dom';
-
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import {useCollection} from '../context/CollectionContext';
 
@@ -19,8 +16,6 @@ const MovieDetails = ({movie, onBtnClick}) => {
 
     const isInCollectionCheck = id ? isInCollection(id) : false;
 
-    console.log(isInCollectionCheck)
-
         const handleClick = (e) => {
         e.stopPropagation();
 
@@ -30,6 +25,12 @@ const MovieDetails = ({movie, onBtnClick}) => {
         else {
             dispatch({type: "ADD", id: id});
         }
+    }
+
+    const navigate = useNavigate();
+
+    const handleBack = () => {
+        navigate(-1);
     }
 
     const width = window.innerWidth > 1024 ? 1280 : 500;
@@ -51,17 +52,19 @@ const MovieDetails = ({movie, onBtnClick}) => {
 
     const imagePath = movie.backdrop_path ? `url(https://image.tmdb.org/t/p/w${width}${movie.backdrop_path})` : `url(${NoCover})`;
 
+    const coverPath = movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : NoCover;
+
     return ( 
         <section className="movie-details">
 
         <div className="movie-details__header" style={{backgroundImage: imagePath}}>
             <div className="hero__overlay"></div>
 
-            <button to="/" className="movie-details__back"><svg className="movie-details__back-icon" xmlns="http://www.w3.org/2000/svg"viewBox="0 -960 960 960"><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg>Back to previous page</button>
+            <button onClick={handleBack} className="return-btn"><svg className="return-btn__icon" xmlns="http://www.w3.org/2000/svg"viewBox="0 -960 960 960"><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg>Back to previous page</button>
 
             <div className="movie-details__header-components">
                 <div className="movie-details__poster">
-                    <img className="movie-details__image" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt=""/>
+                    <img className="movie-details__image" src={coverPath} alt={`okładka filmu ${movie.original_title}`}/>
                 </div>
                 <div className="movie-details__content">
                     <div className="rate rate--hero rate--visible"><span className="rate__value">{movieRate}</span><svg className="rate__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#e3e3e3"><path d="m233-120 65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Z"/></svg> <span className="gray">/10</span></div>

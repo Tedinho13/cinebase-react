@@ -1,7 +1,6 @@
 import NavBar from "../components/layout/NavBar";
 import Footer from "../components/layout/Footer";
 
-import useMovie from "../hooks/useMovie";
 import { useMemo, useState } from "react";
 
 import Loader from "../components/layout/Loader";
@@ -9,10 +8,9 @@ import MovieGrid from "../components/movies/MovieGrid";
 import SearchHeader from "../components/movies/SearchHeader";
 import Filters from '../components/movies/Filters';
 
-import useSearchedMovies from "../hooks/useSearchedMovies";
 import useGenres from "../hooks/useGenres";
 
-import useCollection from "../hooks/useCollection";
+import {useCollection} from "../components/context/CollectionContext";
 import useSelectedMovies from "../hooks/useSelectedMovies";
 
 const Collection = () => {
