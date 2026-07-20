@@ -8,6 +8,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 import {useCollection} from '../context/CollectionContext';
 
+import ErrorInfo from './ErrorInfo';
+
 const MovieDetails = ({movie, onBtnClick}) => {
 
     const {id} = useParams();
@@ -37,7 +39,7 @@ const MovieDetails = ({movie, onBtnClick}) => {
 
     const genresNamesExtracted = movie.genres.map(genre => genre.name);
 
-    const {genres} = useGenres();
+    const {genres, error} = useGenres();
 
     const genresNames = 
         movie.genre_ids ?
@@ -55,7 +57,9 @@ const MovieDetails = ({movie, onBtnClick}) => {
     const coverPath = movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : NoCover;
 
     return ( 
+        
         <section className="movie-details">
+        {error ? <ErrorInfo msg={error}/> : ""}
 
         <div className="movie-details__header" style={{backgroundImage: imagePath}}>
             <div className="hero__overlay"></div>

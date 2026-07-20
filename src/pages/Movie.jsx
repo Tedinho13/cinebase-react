@@ -2,6 +2,7 @@ import VideoModal from "../components/layout/VideoModal";
 import NavBar from "../components/layout/NavBar";
 import MovieDetails from "../components/layout/MovieDetails";
 import Footer from "../components/layout/Footer";
+import ErrorInfo from "../components/layout/ErrorInfo";
 
 import useMovie from "../hooks/useMovie";
 import { useState, useEffect } from "react";
@@ -31,6 +32,7 @@ const Movie = () => {
 
     return ( 
         <>
+        {error ? <ErrorInfo msg={error}/> : ""}
         {modalOpen && <VideoModal id={movieId} onKeyDown={handleCloseModal} onClick={handleCloseByClick}/>}
         <header className="header">
         <NavBar/>

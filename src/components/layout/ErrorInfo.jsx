@@ -1,3 +1,5 @@
+import './ErrorInfo.css';
+
 const ErrorInfo = ({msg}) => {
     return ( 
         <div className="error">

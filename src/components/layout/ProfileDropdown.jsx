@@ -15,7 +15,7 @@ const ProfileDropdown = ({show}) => {
 
     return ( 
         <div onClick={handleClick} className={`profile-dropdown ${show ? "active" : ""}`}>
-                <p className="favourites-movies__item">Ulubione filmy: <span className="favourite-movies__length">{moviesCollection.length}</span></p>
+                <p className="favourites-movies__item">Favourite movies: <span className="favourite-movies__length">{moviesCollection.length}</span></p>
         </div>
      );
 }

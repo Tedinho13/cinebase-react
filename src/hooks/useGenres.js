@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 function useGenres() {
   const [genres, setGenres] = useState(new Map());
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     fetchData(getGenresUrl())
@@ -17,7 +18,10 @@ function useGenres() {
 
         setGenres(newMap);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        setError(true);
+      });
   }, []);
 
   return { genres };
