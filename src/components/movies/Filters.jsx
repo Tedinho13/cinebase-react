@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './Filters.css';
 import useGenres from '../../hooks/useGenres';
 
@@ -7,7 +6,7 @@ const Filters = ({filters, onChangeFilters, onResetFilters}) => {
     const {genres} = useGenres();
 
     const genresTags = Array.from((genres.entries()).map(([id,name]) => (
-        <li key={id} id={id} className={`genre__item ${filters.genre === name ? "active" : ""}`} onClick={(e) => onChangeFilters("genre", id)}>{name}</li>
+        <li key={id} id={id} className={`genre__item ${filters.genre === name ? "active" : ""}`} onClick={() => onChangeFilters("genre", id)}>{name}</li>
     )));
 
     return ( 

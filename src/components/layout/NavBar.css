@@ -28,8 +28,6 @@
     cursor: pointer;
 }
 
-
-
 @media(min-width: 1024px) {
     .nav__brand {
         order: -2;

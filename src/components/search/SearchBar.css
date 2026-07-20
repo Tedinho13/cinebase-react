@@ -27,7 +27,6 @@
     padding: 1rem 1.2rem 1rem 3.5rem;
     background-color: var(--second-background-color);
     border-radius: 0.5rem;
-    /* border: 2px solid transparent */
     border: none;
     color: var(--text-secondary-color);
     font-size: 1.4rem;

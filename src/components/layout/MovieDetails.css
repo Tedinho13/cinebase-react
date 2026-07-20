@@ -101,10 +101,6 @@
     color: var(--text-primary-color);
 }
 
-.movie-details__story {
-    
-}
-
 .movie-details__story-title {
     margin-bottom: 1rem;
     font-size: 2rem;

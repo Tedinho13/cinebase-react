@@ -4,10 +4,12 @@ import Hero from "../components/hero/Hero";
 import MovieGrid from "../components/movies/MovieGrid";
 import Pagination from "../components/movies/Pagination";
 import Footer from "../components/layout/Footer";
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import useMovies from '../hooks/useMovies';
 
 import './Home.css';
+
+import ErrorInfo from "../components/layout/ErrorInfo";
 
 const Home = () => {
     const [page, setPage] = useState(1);
@@ -30,6 +32,7 @@ const Home = () => {
 
     return ( 
         <>
+        {error ? <ErrorInfo msg={error}/> : ""}
         {modalOpen && <VideoModal id={movieId} onKeyDown={handleCloseModal} onClick={handleCloseByClick}/>}
         <header className="header">
         <NavBar/>

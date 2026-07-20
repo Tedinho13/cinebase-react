@@ -5,7 +5,7 @@ import Footer from "../components/layout/Footer";
 import ErrorInfo from "../components/layout/ErrorInfo";
 
 import useMovie from "../hooks/useMovie";
-import { useState, useEffect } from "react";
+import { useState} from "react";
 
 import { useParams } from "react-router-dom";
 import Loader from "../components/layout/Loader";

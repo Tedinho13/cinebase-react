@@ -1,7 +1,6 @@
 import NavBar from "../components/layout/NavBar";
 import Footer from "../components/layout/Footer";
 
-import useMovie from "../hooks/useMovie";
 import { useMemo, useState } from "react";
 
 import { useParams } from "react-router-dom";
@@ -53,6 +52,7 @@ const Movie = () => {
 
     return ( 
         <>
+        {error ? <ErrorInfo msg={error}/> : ""}
         <header className="header">
         <NavBar/>
         </header>
